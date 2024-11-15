@@ -1,7 +1,6 @@
 Here at Selexera, we provide unblockable games, unblockable apps and more!
 This is the beginning of a new bypassing era!
 --How to access file-site--
-go to the github here: https://github.com/Nickisagamer6/Selexera
 click the green code dropdown button on the top right of the screen
 on the bottom of the dropdown click download zip
 open zip and open folder
