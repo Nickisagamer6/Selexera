@@ -1,0 +1,542 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selexera</title>
+</head>
+<body>
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+            flex-direction: column; /* Stack content vertically */
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slight transparency for readability */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            z-index: 1;
+            position: relative;
+            flex-grow: 1; /* Allow the container to grow and take the available space */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align content to the top */
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 0; /* Remove top margin */
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+            font-family: 'Helvetica', sans-serif;
+            font-weight: bold;
+            margin-top: 10px; /* Adjust margin to move title up */
+        }
+
+        header h2 {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 0;
+            font-weight: normal;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .tab:hover {
+            background-color: #f0f0f0;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .active {
+            background-color: #d3d3d3;
+        }
+
+        button {
+            background-color: #4CAF50; /* Green background */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 300px;
+            margin-top: 10px;
+        }
+
+        /* Theme styles */
+        body.sapphire {
+            background-color: #00bcd4;
+            color: #000000; /* Black text for sapphire */
+        }
+
+        body.hacker-green {
+            background-color: #0f0;
+            color: #000000; /* Black text for hacker-green */
+        }
+
+        body.ruby-red {
+            background-color: #d50032;
+            color: #ffffff; /* White text for ruby-red */
+        }
+
+        body.purple-crystals {
+            background-color: #9c27b0;
+            color: #ffffff; /* White text for purple-crystals */
+        }
+
+        /* Bottom Name Styling */
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .image-button1 {
+            width: 200px;
+            height: 50px;
+            background-image:url('eaglercraft pic.jfif'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            border:  2px;
+            cursor: pointer;
+            text-align: center;
+            color: cyan;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Add a hover effect */
+        .image-button:hover {
+            opacity: 0.8;
+        }
+        .image-button2 {
+            width: 200px;
+            height: 50px;
+            background-image:url('madalinstuntcars.png'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            border:  2px;
+            cursor: pointer;
+            text-align: center;
+            color: cyan;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 250px;
+            left: 555px;
+        }
+        .image-button3 {
+            width: 200px;
+            height: 50px;
+            background-image:url('cookieclicker.png'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            border:  2px;
+            cursor: pointer;
+            text-align: center;
+            color: cyan;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 250px;
+            right: 300px;
+        }
+        .image-button4 {
+            width: 200px;
+            height: 50px;
+            background-image:url('geometrydash.png'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            border:  2px;
+            cursor: pointer;
+            text-align: center;
+            color: cyan;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-button5 {
+            width: 200px;
+            height: 50px;
+            background-image:url('fluidsimulator.png'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            border:  2px;
+            cursor: pointer;
+            text-align: center;
+            color: cyan;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 310px;
+            left: 555px;
+        }
+        .image-button6 {
+            width: 200px;
+            height: 50px;
+            background-image:url('logo.png'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            border:  2px;
+            cursor: pointer;
+            text-align: center;
+            color: cyan;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 310px;
+            right: 300px;
+        }
+        .image-button7 {
+            width: 200px;
+            height: 50px;
+            background-image:url('sandgame.png'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            border:  2px;
+            cursor: pointer;
+            text-align: center;
+            color: cyan;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-button8 {
+            width: 200px;
+            height: 50px;
+            background-image:url('rollingforests.png'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            border:  2px;
+            cursor: pointer;
+            text-align: center;
+            color: cyan;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 370px;
+            left: 555px;
+        }
+        .image-button9 {
+            width: 200px;
+            height: 50px;
+            background-image:url('mountainmaze.png'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            border:  2px;
+            cursor: pointer;
+            text-align: center;
+            color: cyan;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 370px;
+            right: 300px;
+        }
+        .image-button10 {
+            width: 200px;
+            height: 50px;
+            background-image:url('supermario64.png'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            border:  2px;
+            cursor: pointer;
+            text-align: center;
+            color: cyan;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-button11 {
+            width: 200px;
+            height: 50px;
+            background-image:url('calculator.png'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            border:  2px;
+            cursor: pointer;
+            text-align: center;
+            color: cyan;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <div class="container">
+        <!-- Website Name -->
+        <header class="header">
+            <h1 id="site-title">Selexera</h1>
+            <h2>Soon to be an amazing bypass</h2>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab" onclick="showContent('home')" __uv-attr-onclick="showContent('home')">Home</div>
+            <div class="tab" onclick="showContent('games')" __uv-attr-onclick="showContent('games')">Games</div>
+            <div class="tab" onclick="showContent('apps')" __uv-attr-onclick="showContent('apps')">Apps</div>
+            <div class="tab" onclick="showContent('linksandothers')" __uv-attr-onclick="showContent('linksandothers')">Links and Stuff</div>
+            <div class="tab" onclick="showContent('settings')" __uv-attr-onclick="showContent('settings')">Settings</div>
+        </div>
+
+        <!-- Tab Content -->
+<div id="home" class="tab-content">
+            <h2>Selexera</h2>
+            <p>At Selexera, we provide a wide  variety of games, apps, Links, links for other proxies, link to other game sites, other cool bypass stuff, and settings such as an about blank cloak, different cloaks such as a title changer, and themes.</p>
+<p>Please note that we know that we are far from done and there will be a whole bunch of new stuff added to the file-site/data-site.</p>
+<p></p><hr><p></p>
+<h4>Stuff that we want to add:</h4>
+<p>A search engine [D-A] (I'm pretty sure that once we have the search engine,you wont be able to access the search engine through the file-site nor the data-site.  I don't know completely so don't be so sad yet)</p>
+<p>More games [D-A]</p>
+<p>More apps [D-A]</p>
+<p>A link, and the ability to deploy your own links [D-A]</p>
+<p>A discord server [D-A]</p>
+<hr>
+<h4>Meanings</h4>
+<p>D-A = definitely adding</p>
+<p>P-A = Probably adding</p>
+        </div>
+
+        <div id="games" class="tab-content">
+            <h2>Games</h2>
+            <hr>
+            <a href="eaglercraftx_1.8_offline_en_us.html"> <!-- Adjust your file's path -->
+                <button class="image-button1">
+                    EaglerCraftX 1.18
+                </button>
+            </a>
+            <a href="madalinstuntcars/madalinstuntcars.html"> <!-- Adjust your file's path -->
+                <button class="image-button2">
+                    Madalin Stunt Cars 2
+                </button>
+            </a>
+            <a href="cookie/index.html"> <!-- Adjust your file's path -->
+                <button class="image-button3">
+                    Cookie Clicker
+                </button>
+            </a>
+            <a href="geometrydash.html"> <!-- Adjust your file's path -->
+                <button class="image-button4">
+                    Geometry Dash
+                </button>
+            </a>
+            <a href="fluidsimulator.html"> <!-- Adjust your file's path -->
+                <button class="image-button5">
+                    Fluid Simulator
+                </button>
+            </a>
+            <a href="1v1.lol/index.html"> <!-- Adjust your file's path -->
+                <button class="image-button6">
+                    1v1.lol
+                </button>
+            </a>
+            <a href="sandgame.html"> <!-- Adjust your file's path -->
+                <button class="image-button7">
+                    Element Sandbox
+                </button>
+            </a>
+            <a href="rollingforests.html"> <!-- Adjust your file's path -->
+                <button class="image-button8">
+                    Rolling Forests
+                </button>
+            </a>
+            <a href="mountainmaze.html"> <!-- Adjust your file's path -->
+                <button class="image-button9">
+                    Moutain Maze
+                </button>
+            </a>
+            <a href="supermario64.html"> <!-- Adjust your file's path -->
+                <button class="image-button10">
+                    Super Mario 64
+                </button>
+            </a>
+        </div>
+
+        <div id="apps" class="tab-content">
+            <h2>Apps</h2>
+            <hr>
+            <a href="calculator/index.html"> <!-- Adjust your file's path -->
+                <button class="image-button11">
+                    Calculator
+                </button>
+            </a>
+            <a href="emulatorjs/index.html"> <!-- Adjust your file's path -->
+                <button class="image-button12">
+                    Emulator.js
+                </button>
+            </a>
+        </div>
+
+<div id="linksandothers" class="tab-content">
+            <h2>Links and other stuff</h2>
+            <p>soon</p>
+        </div>
+
+
+        <div id="settings" class="tab-content">
+            <h2>Settings</h2>
+            <label for="theme-select">Choose a theme:</label>
+            <select id="theme-select" onchange="changeTheme()" __uv-attr-onchange="changeTheme()">
+                <option value="sapphire">Sapphire (Cyan)</option>
+                <option value="hacker-green">Hacker Green</option>
+                <option value="ruby-red">Ruby Red</option>
+                <option value="purple-crystals">Purple Crystals</option>
+            </select>
+
+            <!-- Title Change Section -->
+            <div>
+                <label for="new-title">Change Website Title:</label>
+                <input type="text" id="new-title" placeholder="Enter new title">
+                <button onclick="changeWebsiteTitle()" __uv-attr-onclick="changeWebsiteTitle()">Apply</button>
+            </div>
+
+            <!-- Open New Tab Button -->
+            <div>
+                <button onclick="openAboutBlank()" __uv-attr-onclick="openAboutBlank()">Open in About:Blank</button>
+            </div>
+            <p>Doesnt realy work at the moment</p>
+        </div>
+    </div>
+
+    <!-- Footer with your name -->
+    <div class="footer">
+        <p>Proudly brought to you by Nickisagamer6</p>
+    </div>
+
+    <script>
+        // Function to change the theme when selected
+        function changeTheme() {
+            const themeSelect = document.getElementById('theme-select');
+            const selectedTheme = themeSelect.value;
+
+            // Remove all theme classes from the body
+            document.body.classList.remove('sapphire', 'hacker-green', 'ruby-red', 'purple-crystals');
+
+            // Add the selected theme class
+            document.body.classList.add(selectedTheme);
+        }
+
+        // Function to show content based on the tab clicked
+        function showContent(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.style.display = 'none';
+            });
+
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            const activeTab = document.getElementById(tabName);
+            activeTab.style.display = 'block';
+            const activeTabElement = Array.from(tabs).find(tab => tab.innerText.toLowerCase() === tabName);
+            activeTabElement.classList.add('active');
+        }
+
+        // Default tab to show and set default theme
+        document.addEventListener('DOMContentLoaded', () => {
+            showContent('home'); // Show 'Games' tab by default
+            changeTheme(); // Set the default theme to Sapphire (Cyan)
+        });
+
+        // Function to change the webpage title (only for <title> in the head)
+        function changeWebsiteTitle() {
+            const newTitle = document.getElementById('new-title').value;
+            if (newTitle) {
+                document.title = newTitle; // Change only the <title> tag
+            }
+        }
+
+        // Function to open a new tab with about:blank
+        function openAboutBlank() {
+            const newTab = window.open('about:blank', '_blank');
+            newTab.document.write('<p>put site doubled in here exept without the without blank stuff</p>');
+            newTab.document.close(); // Finish writing content to the new tab
+        }
+    </script>
+
+
+
+</body></html>
